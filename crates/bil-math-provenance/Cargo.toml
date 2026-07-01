@@ -1,0 +1,11 @@
+[package]
+name = "bil-math-provenance"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+bil-math-core = { path = "../bil-math-core" }
+serde.workspace = true
+thiserror.workspace = true
