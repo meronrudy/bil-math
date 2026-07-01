@@ -1,0 +1,29 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "crates/bil-math-core",
+    "crates/bil-math-lattice",
+    "crates/bil-math-provenance",
+    "crates/bil-math-sheaf",
+    "crates/bil-math-holonomy",
+    "crates/bil-math-examples",
+    "crates/bil-math-cli",
+]
+
+[workspace.package]
+edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/meronrudy/bil-math"
+authors = ["Meron Rudy"]
+readme = "README.md"
+
+[workspace.dependencies]
+thiserror = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+petgraph = "0.6"
+nalgebra = "0.33"
+clap = { version = "4", features = ["derive"] }
+proptest = "1"
+criterion = "0.5"
