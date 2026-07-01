@@ -1,6 +1,4 @@
-use bil_math_core::{
-    EdgeId, InstitutionalGraph, MathError, Matrix, VertexId,
-};
+use bil_math_core::{EdgeId, InstitutionalGraph, MathError, Matrix, VertexId};
 use std::collections::BTreeMap;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -94,11 +92,7 @@ impl CellularSheaf {
             .sum()
     }
 
-    pub fn restriction(
-        &self,
-        vertex: VertexId,
-        edge: EdgeId,
-    ) -> Result<&Matrix, MathError> {
+    pub fn restriction(&self, vertex: VertexId, edge: EdgeId) -> Result<&Matrix, MathError> {
         self.restrictions
             .get(&RestrictionKey { vertex, edge })
             .ok_or(MathError::MissingRestriction { edge, vertex })

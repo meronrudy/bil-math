@@ -1,10 +1,7 @@
 use crate::{Cycle, DiscreteConnection};
 use bil_math_core::{MathError, Matrix};
 
-pub fn cycle_holonomy(
-    connection: &DiscreteConnection,
-    cycle: &Cycle,
-) -> Result<Matrix, MathError> {
+pub fn cycle_holonomy(connection: &DiscreteConnection, cycle: &Cycle) -> Result<Matrix, MathError> {
     if cycle.is_empty() {
         return Err(MathError::InvalidCycle(
             "cannot compute holonomy over an empty cycle".to_string(),

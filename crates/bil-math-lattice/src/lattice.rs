@@ -1,4 +1,4 @@
-use crate::{PartialOrder, PolicyState};
+use crate::PolicyState;
 
 #[derive(Debug, Clone)]
 pub struct FiniteLattice {

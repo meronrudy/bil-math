@@ -1,9 +1,5 @@
-use bil_math_core::{
-    DirectedEdge, EdgeId, InstitutionalGraph, Matrix, VertexId, Vector,
-};
-use bil_math_sheaf::{
-    residual::sheaf_residual, CellularSheaf, RestrictionKey, ZeroCochain,
-};
+use bil_math_core::{DirectedEdge, EdgeId, InstitutionalGraph, Matrix, Vector, VertexId};
+use bil_math_sheaf::{residual::sheaf_residual, CellularSheaf, RestrictionKey, ZeroCochain};
 use std::collections::BTreeMap;
 
 pub fn run_toy_bank_sheaf_residual() -> f64 {

@@ -1,5 +1,5 @@
-use crate::{coboundary::coboundary_matrix, ZeroCochain};
 use crate::CellularSheaf;
+use crate::{coboundary::coboundary_matrix, ZeroCochain};
 use bil_math_core::{MathError, Scalar, Vector};
 
 #[derive(Debug, Clone)]

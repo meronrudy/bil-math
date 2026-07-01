@@ -47,13 +47,11 @@ pub fn coboundary_matrix(sheaf: &CellularSheaf) -> Result<Matrix, MathError> {
 
         for r in 0..edge_dim {
             for c in 0..source_dim {
-                delta[(row_offset + r, source_offset + c)] =
-                    source_restriction[(r, c)];
+                delta[(row_offset + r, source_offset + c)] = source_restriction[(r, c)];
             }
 
             for c in 0..target_dim {
-                delta[(row_offset + r, target_offset + c)] =
-                    -target_restriction[(r, c)];
+                delta[(row_offset + r, target_offset + c)] = -target_restriction[(r, c)];
             }
         }
     }
