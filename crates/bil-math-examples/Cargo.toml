@@ -1,0 +1,13 @@
+[package]
+name = "bil-math-examples"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+bil-math-core = { path = "../bil-math-core" }
+bil-math-sheaf = { path = "../bil-math-sheaf" }
+bil-math-holonomy = { path = "../bil-math-holonomy" }
+bil-math-lattice = { path = "../bil-math-lattice" }
+bil-math-provenance = { path = "../bil-math-provenance" }
