@@ -17,8 +17,14 @@ pub enum MathError {
         vertex: crate::VertexId,
     },
 
+    #[error("invalid path: {0}")]
+    InvalidPath(String),
+
     #[error("invalid cycle: {0}")]
     InvalidCycle(String),
+
+    #[error("non-square matrix: rows {rows}, cols {cols}")]
+    NonSquareMatrix { rows: usize, cols: usize },
 
     #[error("empty structure")]
     EmptyStructure,

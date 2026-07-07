@@ -10,3 +10,6 @@ bil-math-core = { path = "../bil-math-core" }
 serde.workspace = true
 thiserror.workspace = true
 nalgebra.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true

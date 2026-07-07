@@ -1,59 +1,80 @@
 # BIL Math
 
-Pure Rust mathematical foundations for the Banking Integration Layer.
+Pure Rust mathematical foundations for studying regulated AI assurance as an
+executable proof spine.
 
-BIL Math defines typed, deterministic primitives for regulated AI assurance:
+This repository is organized for PhD-level mathematical development. The goal
+is to keep each central definition readable as mathematics, executable as Rust,
+and traceable through tests and small examples.
 
-- institutional graphs
-- policy lattices
-- provenance DAGs
-- cellular sheaves
-- sheaf residuals
-- discrete transport
-- institutional holonomy
-- audit replay invariants
+## Study Thesis
 
-This repository is math-first. It is not the commercial BIL product, and it does not contain customer integrations, bank-specific workflows, production evidence schemas, or hardware RTL.
+Regulated AI assurance is treated here as a consistency problem over
+institutional workflows.
 
-## Why Rust?
+Local systems such as underwriting, model service, compliance review, human
+approval, and audit replay each carry local semantic state. BIL Math studies
+whether those local states remain coherent when transported through the
+workflow. In the first proof thread, a nontrivial loop transport is a holonomy
+obstruction: after moving around a closed institutional loop, the state does
+not return to itself.
 
-Rust is used here because BIL’s mathematical substrate should be:
+## Current Proof Spine
 
-- deterministic
-- memory-safe
-- testable
-- portable
-- suitable for eventual production hardening
-- suitable for later FPGA, SmartNIC, and EPU interface boundaries
+The first worked chapter is holonomy obstruction theory:
 
-The initial goal is not performance. The initial goal is mathematical clarity with a credible path to hardened infrastructure.
+- column vectors represent local semantic states;
+- edge transport maps source state to target state;
+- ordered path holonomy composes maps right-to-left;
+- cycle holonomy is valid only for graph-closed, dimension-compatible loops;
+- obstruction is the norm of the deviation from identity.
 
-## Core Mathematical Thesis
+Start with:
 
-Regulated AI assurance is a local-to-global consistency problem.
+- [docs/README.md](docs/README.md) for the study map;
+- [docs/notation.md](docs/notation.md) for conventions;
+- [docs/holonomy-obstruction.md](docs/holonomy-obstruction.md) for the main
+  chapter;
+- [docs/trace-matrix.md](docs/trace-matrix.md) for theorem-to-code links.
 
-Each institution, policy engine, model service, human approval queue, or compliance subsystem has a local view of a decision. BIL Math asks whether those local views glue into a coherent global institutional state.
+## Rust Workspace
 
-When they do not glue, the failure is measured as a sheaf residual.
+The crates are intentionally small:
 
-When meaning changes around a workflow loop, the accumulated transformation is measured as institutional holonomy.
+- `bil-math-core`: IDs, institutional graphs, scalar/vector/matrix aliases,
+  and shared errors.
+- `bil-math-holonomy`: paths, cycles, transport maps, holonomy, and
+  obstruction measurement.
+- `bil-math-sheaf`: cellular sheaf primitives, coboundary, Laplacian,
+  residuals, and global-section checks.
+- `bil-math-lattice`: finite policy-order primitives and only-tighten checks.
+- `bil-math-provenance`: decision-event DAGs and replay invariants.
+- `bil-math-examples`: executable study examples.
+- `bil-math-cli`: command-line entrypoints for examples.
+
+## Run
+
+```sh
+cargo test --workspace
+cargo run -p bil-math-cli -- holonomy-loop
+cargo run -p bil-math-cli -- toy-bank
+```
+
+The holonomy example prints obstruction data for a closed institutional loop:
+
+```text
+holonomy_identity_deviation=0.15
+holonomy_trace=2
+holonomy_tolerance=0.000000001
+holonomy_is_trivial=false
+```
 
 ## Repository Boundary
 
-This repo contains:
+This repo contains mathematical definitions, typed Rust reference
+implementations, proof notes, tests, and toy examples.
 
-- mathematical definitions
-- typed Rust reference implementations
-- toy examples
-- tests
-- benchmarks
-- paper drafts
-
-This repo does not contain:
-
-- production BIL APIs
-- customer data
-- bank integrations
-- pricing
-- investor pitch materials
-- hardware RTL
+It does not contain production BIL APIs, customer data, bank integrations,
+pricing, investor materials, or hardware RTL. It also does not introduce Lean,
+LaTeX build tooling, or mdBook in this pass; the proof spine is plain Markdown
+linked to executable Rust witnesses.
